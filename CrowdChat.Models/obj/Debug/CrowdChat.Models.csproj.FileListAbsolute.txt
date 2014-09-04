@@ -1,0 +1,8 @@
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\CrowdChat.Models.dll
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\CrowdChat.Models.pdb
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\MongoDB.Bson.dll
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\MongoDB.Driver.dll
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\MongoDB.Bson.xml
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\bin\Debug\MongoDB.Driver.xml
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\obj\Debug\CrowdChat.Models.dll
+C:\Users\Alexandar\Desktop\Telerik Academy\Databases\11.MongoDB и работа с MongoDB в .NET\MongoDB\CrowdChat\CrowdChat.Models\obj\Debug\CrowdChat.Models.pdb
