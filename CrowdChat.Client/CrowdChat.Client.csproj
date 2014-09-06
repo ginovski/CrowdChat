@@ -108,6 +108,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CrowdChat.Data\CrowdChat.Data.csproj">
+      <Project>{3adf5b1b-f852-485d-9093-ec995d57976e}</Project>
+      <Name>CrowdChat.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CrowdChat.Models\CrowdChat.Models.csproj">
       <Project>{0e45920e-f424-4f5f-baeb-6f4f91a7a993}</Project>
       <Name>CrowdChat.Models</Name>

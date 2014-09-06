@@ -1,0 +1,9 @@
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\CrowdChat.Data.dll.config
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\CrowdChat.Data.dll
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\CrowdChat.Data.pdb
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\MongoDB.Bson.dll
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\MongoDB.Driver.dll
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\MongoDB.Bson.xml
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\bin\Debug\MongoDB.Driver.xml
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\obj\Debug\CrowdChat.Data.dll
+C:\Users\Alexandar\Desktop\CrowdChat\CrowdChat.Data\obj\Debug\CrowdChat.Data.pdb

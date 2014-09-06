@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using CrowdChat.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System.Threading;
-namespace CrowdChat.Client
+﻿namespace CrowdChat.Client
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Threading;
+
+    using CrowdChat.Models;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using CrowdChat.Data;
+
     public partial class Chat : Page
     {
+        private static MongoDatabase db = new ChatDb().Database;
         private IEnumerable<Message> messages;
 
         public Chat(User chatUser)
@@ -30,7 +26,9 @@ namespace CrowdChat.Client
             InitializeComponent();
             this.ChangeGreeting();
             this.ShowMessages();
+            this.UpdateMessages();
         }
+
         public User ChatUser { get; private set; }
 
         public void ChangeGreeting()
@@ -38,13 +36,12 @@ namespace CrowdChat.Client
             Greeting.Text = "Hello, " + ChatUser.Name + "!";
         }
 
-        private Task<MongoCursor<Message>> LoadMessages()
+        private Task<List<Message>> LoadMessages()
         {
             return Task.Run(() =>
                 {
-                    var db = this.GetDatabase("mongodb://admin:sshk23@ds033740.mongolab.com:33740/crowdchat", "crowdchat");
                     var messages = db.GetCollection<Message>("messages");
-                    var allMessages = messages.FindAll();
+                    var allMessages = messages.FindAll().ToList();
                     return allMessages;
                 });
         }
@@ -56,32 +53,42 @@ namespace CrowdChat.Client
                 Loading.Text = "Loading...";
                 var allMessages = await LoadMessages();
                 Loading.Text = "";
+
                 MessageBox.ItemsSource = allMessages;
                 if (MessageBox.Items.Count > 0)
                 {
                     MessageBox.ScrollIntoView(MessageBox.Items[MessageBox.Items.Count - 1]);
                 }
+
                 this.messages = allMessages;
             }
             catch (MongoConnectionException)
             {
                 Loading.Text = "No Internet Connection.";
+                MessageText.IsEnabled = false;
             }
         }
 
-        private MongoDatabase GetDatabase(string connection, string database)
+        private void UpdateMessages()
         {
-            var url = new MongoUrl(connection);
-            var client = new MongoClient(url);
-            var server = client.GetServer();
-            var db = server.GetDatabase(database);
+            var timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+        }
 
-            return db;
+        private async void Timer_Tick(object sender, EventArgs e)
+        {
+            var allMessages = await LoadMessages();
+
+            if (allMessages.Count() > this.messages.Count())
+            {
+                ShowMessages();
+            }
         }
 
         private void SendMessageButtonClick(object sender, RoutedEventArgs e)
         {
-            var db = this.GetDatabase("mongodb://admin:sshk23@ds033740.mongolab.com:33740/crowdchat", "crowdchat");
             var messages = db.GetCollection<Message>("messages");
 
             var message = new Message(MessageText.Text, this.ChatUser);
@@ -97,11 +104,6 @@ namespace CrowdChat.Client
             {
                 this.SendMessageButtonClick(sender, e);
             }
-        }
-
-        private void RefreshButtonClick(object sender, RoutedEventArgs e)
-        {
-            ShowMessages();
         }
     }
 }
